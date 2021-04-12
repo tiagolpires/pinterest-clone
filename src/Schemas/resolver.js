@@ -1,5 +1,7 @@
+const pool = require('../db')
+
 module.exports = {
-    getUser: () => {
+    getUser: async () => { 
         return {name: 'Tiago'}
     }
 }

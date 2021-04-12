@@ -1,4 +1,4 @@
-const { GraphQLSchema, GraphQLObjectType, GraphQLString } = require('graphql')
+const { GraphQLSchema, GraphQLObjectType } = require('graphql')
 const UserType = require('./TypeDefs/UserType')
 const resolver = require('./resolver')
 
