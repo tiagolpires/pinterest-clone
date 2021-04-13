@@ -1,5 +1,6 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const pool = require('./src/db')
 require('dotenv').config()
 
 passport.use(new GoogleStrategy({
@@ -7,19 +8,28 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:3001/auth/google/callback"
   },
-  function(accessToken, refreshToken, profile, cb) {
-    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    //   return cb(err, user)   
-    // })
-    console.log(profile)
-    return cb(null, profile)
+    (accessToken, refreshToken, profile, cb) => {
+    pool.query(
+        "INSERT INTO pinterest_user (id, name, profile_picture, email) VALUES($1, $2, $3, $4) ON CONFLICT (id) DO NOTHING",
+        [profile.id, profile.displayName, profile._json.picture, profile._json.email], 
+        (err, res) => {
+            if(err) {
+                console.log(err)
+            }
+            return cb(null, profile.id)
+        }
+    )
   }
 ))
 
-passport.serializeUser(function(user, cb) {
-    cb(null, user);
-});
+passport.serializeUser(function(userId, cb) {
+    cb(null, userId)
+})
   
-passport.deserializeUser(function(user, cb) {
-    cb(null, user);
-});
+passport.deserializeUser(async(userId, cb) => {
+    const user = await pool.query(
+        "SELECT * FROM pinterest_user WHERE id = $1", 
+        [userId]
+    )
+    cb(null, user.rows[0])
+})

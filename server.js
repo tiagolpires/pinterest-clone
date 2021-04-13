@@ -21,10 +21,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use('/', authRoutes)
 
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', graphqlHTTP(req => ({
     schema: schema,
+    context: { user: req.user },
     graphiql: true
-}))
+})))
 
 
 app.listen(PORT, () => console.log(`Server Running at ${PORT}`))

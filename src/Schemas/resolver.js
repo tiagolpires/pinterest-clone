@@ -1,12 +1,13 @@
 const pool = require('../db')
 
 module.exports = {
-    getUser: async () => {
-        // await client.connect()
-        await pool.query("CREATE TABLE EMPLOYEES (id serial primary key, name text)")
-        // await pool.query("DROP TABLE EMPLOYEES")
-        // await client.end()
-  
-        return {name: 'Tiago'}
+    getUser: async (parent, args, context) => {
+        if(context.user == null) {
+            return {name: 'error: user not logged in'}
+        }
+
+        const { name } = context.user
+
+        return {name: name}
     }
 }
