@@ -1,0 +1,60 @@
+/* Pinterest hex value: #E60023
+Pinterest RGB value: rgb(230 0 35) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+:root {
+    font-size: 62.5%;
+}
+
+.pins-container {
+    column-count: 7;
+    width: min-content;
+    margin: auto;
+}
+
+.pin {
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.pin img {
+    width: 236px;
+    border-radius: 16px;
+}
+
+@media(max-width: 1763px) {
+    .pins-container {
+        column-count: 6;
+    }
+}
+
+@media(max-width: 1511px) {
+    .pins-container {
+        column-count: 5;
+    }
+}
+
+@media(max-width: 1259px) {
+    .pins-container {
+        column-count: 4;
+    }
+}
+
+@media(max-width: 1007px) {
+    .pins-container {
+        column-count: 3;
+    }
+}
+
+@media(max-width: 755px) {
+    .pins-container {
+        column-count: 2;
+        padding: 0 10px;
+    }
+}
