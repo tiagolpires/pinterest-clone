@@ -6,15 +6,55 @@ Pinterest RGB value: rgb(230 0 35) */
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    text-decoration: none;
 }
 :root {
     font-size: 62.5%;
+}
+
+.main-header {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #fff;
+}
+
+.bottom-shadow {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 8px -8px; transition: box-shadow 300ms ease-in-out 0s;
+}
+
+.main-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 80px;
+}
+
+.header-left-content {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+}
+
+.btn-add-pin{
+    color: #fff;
+    background-color: #000;
+    border-radius: 24px;
+    padding: 15px 20px;
+    margin: 0 20px;
+}
+
+.btn-my-pins {
+    color: #000;
 }
 
 .pins-container {
     column-count: 7;
     width: min-content;
     margin: auto;
+    padding-top: 90px;
 }
 
 .pin {
@@ -55,6 +95,6 @@ Pinterest RGB value: rgb(230 0 35) */
 @media(max-width: 755px) {
     .pins-container {
         column-count: 2;
-        padding: 0 10px;
+        padding: 90px 10px 0 10px;
     }
 }

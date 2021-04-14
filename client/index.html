@@ -9,7 +9,19 @@
     <title>Pinterest Clone</title>
 </head>
 <body>
-    <div class="pins-container">
+    <header class="main-header">
+        <div class="main-header-container">
+            <div class="header-left-content">
+                <img src="./icons/pinterest.svg">
+                <a class="btn-add-pin" href="#">Adicionar Pin</a>
+                <a class="btn-my-pins" href="#">Meus Pins</a>
+            </div>
+            <a class="header-user-container" href="#">
+                <img src="./icons/user.svg">
+            </a>
+        </div>
+    </header>
+    <main class="pins-container">
         <div class="pin"><img src="./images/road.jpg"></div>
         <div class="pin"><img src="./images/kombi.jpg"></div>
         <div class="pin"><img src="./images/road.jpg"></div>
@@ -37,6 +49,7 @@
         <div class="pin"><img src="./images/kombi.jpg"></div>
         <div class="pin"><img src="./images/road.jpg"></div>
         <div class="pin"><img src="./images/kombi.jpg"></div>
-    </div>
+    </main>
+    <script src="./script.js"></script>
 </body>
 </html>
