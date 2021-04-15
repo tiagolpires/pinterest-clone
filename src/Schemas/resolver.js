@@ -31,5 +31,17 @@ module.exports = {
             "SELECT * FROM pin"
         )
         return pins.rows
+    },
+    getPin: async(parent, args) => {
+        const pin = await pool.query(
+            "SELECT * FROM pin WHERE id = $1", [args.id]
+        )
+        return pin.rows[0]
+    },
+    getPinUser: async(pin) => {
+        const user = await pool.query(
+            "SELECT * FROM pinterest_user WHERE id = $1", [pin.user_id]
+        )
+        return(user.rows[0])
     }
 }
