@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #EFEFEF;
+}
+
+.create-form-container {
+    margin: auto;
+    width: 880px;
+    padding: 55px 80px;
+    background-color: #fff;
+    margin-top: 124px;
+    margin-bottom: 44px;
+    border-radius: 20px;
+}
+
+.create-form {
+    width: 490px;
+}
+
+.create-form input {
+    border: none;
+    border-bottom: 1px solid #A8A8A8;
+    outline: none;
+    width: 100%;
+    margin: 25px 0;
+    padding-bottom: 10px;
+}
+
+.desc-url-input {
+    font-size: 20px;
+}
+
+.title-input {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.create-pin-user {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.create-pin-user img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+
+.create-form button {
+    padding: 20px;
+    color: #fff;
+    background-color: #E60023;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 24px;
+    padding: 15px 38px;
+    margin: 25px 0;
+}
+
+@media(max-width: 950px) {
+    .create-form-container {
+        width: 90%;
+        padding: 55px 10px;
+    }
+
+    .create-form {
+        width: 90%;
+        margin: auto;
+    }
+}
+
+@media(max-width: 430px) {
+    .title-input {
+        font-size: 22px;
+    }
+    .desc-url-input {
+        font-size: 14px;
+    }
+}
