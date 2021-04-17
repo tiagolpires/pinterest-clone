@@ -10,12 +10,9 @@ const RootQueryType = new GraphQLObjectType ({
             type: new GraphQLList(UserType),
             resolve: resolver.getAllUsers
         },
-        user: {
+        loggedUser: {
             type: UserType,
-            args: {
-                id: {type: GraphQLID}
-            },
-            resolve: (parent, args) => resolver.getUser(parent, args)
+            resolve: resolver.getLoggedUser
         },
         pins: {
             type: new GraphQLList(PinType),
