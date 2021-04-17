@@ -9,7 +9,7 @@ async function createPin() {
 }
 
 async function getPin() {
-    const query = '{ pin(id: 1){image_url, title, id, author{name, profile_picture}}}'
+    const query = `{ pin(id: ${pinId}){image_url, title, id, author{name, profile_picture}}}`
 
     const response = await fetch(`${apiBaseUrl}/${pinId}`, {
     method: 'POST',
