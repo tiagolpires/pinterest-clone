@@ -1,4 +1,4 @@
-const { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLID } = require('graphql')
+const { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLNonNull, GraphQLID, GraphQLString } = require('graphql')
 const UserType = require('./TypeDefs/UserType')
 const PinType = require('./TypeDefs/PinType')
 const resolver = require('./resolver')
@@ -31,5 +31,20 @@ const RootQueryType = new GraphQLObjectType ({
     }
 })
 
-module.exports = new GraphQLSchema({query: RootQueryType})
+const RootMutationType = new GraphQLObjectType ({
+    name: 'Mutation',
+    fields: {
+        addPin: {
+            type: PinType,
+            args: {
+                image_url: { type: GraphQLNonNull(GraphQLString) },
+                title: { type: GraphQLNonNull(GraphQLString) },
+                description: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve: (parent, args, context) => resolver.addPin(parent, args, context)
+        }
+    }
+})
+
+module.exports = new GraphQLSchema({query: RootQueryType, mutation: RootMutationType})
 

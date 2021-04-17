@@ -43,5 +43,14 @@ module.exports = {
             "SELECT * FROM pinterest_user WHERE id = $1", [pin.user_id]
         )
         return(user.rows[0])
+    },
+    addPin: async(parent, { image_url: imageUrl, title, description }, { user }) => {
+        if(!user) throw new Error('User not connected')
+
+        const newPin = await pool.query(
+            "INSERT INTO pin (user_id, image_url, title, description) VALUES($1, $2, $3, $4) RETURNING *",
+            [user.id, imageUrl, title, description]   
+        )
+        return newPin.rows[0]
     }
 }
