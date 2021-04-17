@@ -37,7 +37,8 @@ body {
     padding-bottom: 10px;
 }
 
-.desc-url-input {
+.desc-input,
+.url-input {
     font-size: 20px;
 }
 
@@ -88,7 +89,9 @@ body {
     .title-input {
         font-size: 22px;
     }
-    .desc-url-input {
+    
+    .desc-input,
+    .url-input {
         font-size: 14px;
     }
 }
