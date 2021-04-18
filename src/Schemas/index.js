@@ -24,6 +24,10 @@ const RootQueryType = new GraphQLObjectType ({
                 id: {type: GraphQLID}
             },
             resolve: (parent, args) => resolver.getPin(parent, args)
+        },
+        userPins: {
+            type: new GraphQLList(PinType),
+            resolve: (parent, args, context) => resolver.getUserPins(parent, args, context)
         }
     }
 })

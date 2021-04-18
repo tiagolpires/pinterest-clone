@@ -47,5 +47,12 @@ module.exports = {
             [user.id, imageUrl, title, description]   
         )
         return newPin.rows[0]
-    }
+    },
+    getUserPins: async(parent, args, { user }) => {
+        if(!user) throw new Error('User not connected')
+        const userPins = await pool.query(
+            "SELECT * FROM pin WHERE user_id = $1", [user.id]
+        )
+        return userPins.rows
+    } 
 }
