@@ -60,7 +60,7 @@
     font-size: 12px;
 }
 
-.pin-owner-btn a {
+.pin-save-btn {
     color: #fff;
     background-color: #e60023;
     padding: 15px 20px;
@@ -68,6 +68,11 @@
     cursor: pointer;
     font-size: 15px;
     font-weight: bold;
+}
+
+.pin-save-btn.saved {
+    background-color: #000000;
+    cursor: auto;
 }
 
 .pin-title {
