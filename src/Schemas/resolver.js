@@ -62,5 +62,12 @@ module.exports = {
             [user.id]
         )
         return savedUserPins.rows
-    } 
+    },
+    savePin: async(parent, { id: pinId }, { user }) => {
+        if(!user) throw new Error('User not connected')
+        const savePin = await pool.query(
+            "INSERT INTO saved_pin (user_id, pin_id) VALUES($1, $2) RETURNING *", [user.id, pinId]
+        )
+        return savePin.rows[0]
+    }
 }

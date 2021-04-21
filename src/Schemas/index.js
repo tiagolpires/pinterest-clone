@@ -1,6 +1,7 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLNonNull, GraphQLID, GraphQLString } = require('graphql')
 const UserType = require('./TypeDefs/UserType')
 const PinType = require('./TypeDefs/PinType')
+const SavedPinType = require('./TypeDefs/SavedPinType')
 const resolver = require('./resolver')
 
 const RootQueryType = new GraphQLObjectType ({
@@ -47,6 +48,13 @@ const RootMutationType = new GraphQLObjectType ({
                 description: { type: GraphQLNonNull(GraphQLString) }
             },
             resolve: (parent, args, context) => resolver.addPin(parent, args, context)
+        },
+        savePin: {
+            type: SavedPinType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLID) },
+            },
+            resolve: (parent, args, context) => resolver.savePin(parent, args, context)
         }
     }
 })
