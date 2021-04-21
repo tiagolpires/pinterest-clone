@@ -56,7 +56,7 @@ module.exports = {
         return userPins.rows
     },
     getUserSavedPins: async(parent, args, { user }) => {
-        // if(!user) throw new Error('User not connected')
+        if(!user) throw new Error('User not connected')
         const savedUserPins = await pool.query(
             "SELECT * FROM pin INNER JOIN saved_pin ON pin.id = saved_pin.pin_id WHERE saved_pin.user_id = $1",
             [user.id]

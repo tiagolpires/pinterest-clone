@@ -33,7 +33,6 @@ const RootQueryType = new GraphQLObjectType ({
             type: new GraphQLList(PinType),
             resolve: (parent, args, context) => resolver.getUserSavedPins(parent, args, context)
         }
-
     }
 })
 
