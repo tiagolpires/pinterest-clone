@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/my-pins.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <title>Pinterest Clone</title>
+</head>
+<body>
+    <header class="main-header">
+        <div class="main-header-container">
+            <div class="header-left-content">
+                <a href="./index.html"><img src="./assets/icons/pinterest.svg"></a>
+                <a class="btn-add-pin" href="./create.html">Adicionar Pin</a>
+                <a class="btn-my-pins" href="#">Meus Pins</a>
+            </div>
+            <a class="header-user-container" href="#">
+                <img class="header-profile-picture" src="./assets/icons/user.svg">
+            </a>
+        </div>
+    </header>
+    <main class="my-pins-container">  
+        <section class="created-pins-section">
+            <h1>Pins Criados</h1>
+            <div class="created-pins"></div>
+        </section>
+        <section class="saved-pins-section">
+            <h1>Pins Salvos</h1>
+            <div class="saved-pins"></div>
+        </section>
+    </main>
+    <script src="./assets/js/myPins.js"></script>
+    <script src="./assets/js/header.js"></script>
+</body>
+</html>
