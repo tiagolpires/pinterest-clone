@@ -69,5 +69,25 @@ module.exports = {
             "INSERT INTO saved_pin (user_id, pin_id) VALUES($1, $2) RETURNING *", [user.id, pinId]
         )
         return savePin.rows[0]
+    },
+    deletePin: async(parent, { id: pinId }, { user }) => {
+        if(!user) throw new Error('User not connected')
+        const pinOwnerId = await pool.query(
+            "SELECT user_id FROM pin WHERE id = $1", [pinId]
+        )
+        if(user.id !== pinOwnerId.rows[0].user_id) throw new Error('User not connected')
+        
+        const deleteFromSavedPin = await pool.query(
+            "DELETE FROM saved_pin WHERE pin_id = $1", [pinId]
+        )
+        const deletePin = await pool.query(
+            "DELETE FROM pin WHERE id = $1", [pinId]
+        )
+    },
+    deleteSavedPin: async(parent, { id: pinId }, { user }) => {
+        if(!user) throw new Error('User not connected')
+        const deleteSavedPin = await pool.query(
+            "DELETE FROM saved_pin WHERE pin_id = $1 AND user_id = $2", [pinId, user.id]
+        )
     }
 }

@@ -52,9 +52,23 @@ const RootMutationType = new GraphQLObjectType ({
         savePin: {
             type: SavedPinType,
             args: {
-                id: { type: GraphQLNonNull(GraphQLID) },
+                id: { type: GraphQLNonNull(GraphQLID) }
             },
             resolve: (parent, args, context) => resolver.savePin(parent, args, context)
+        },
+        deletePin: {
+            type: PinType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLID) }
+            },
+            resolve: (parent, args, context) => resolver.deletePin(parent, args, context)
+        },
+        deleteSavedPin: {
+            type: PinType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLID) }
+            },
+            resolve: (parent, args, context) => resolver.deleteSavedPin(parent, args, context)
         }
     }
 })
