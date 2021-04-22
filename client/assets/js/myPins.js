@@ -36,7 +36,7 @@ function addUserPins(pins, containerClass, deleteFunction) {
         const pinContent = `
             <div class="pin">
                 <img src=${pin.image_url} onClick="pinPage(${pin.id})">
-                <div class="pin-delete-btn" onClick="${deleteFunction}(event, ${pin.id})"></div>
+                <div class="pin-delete-btn" onClick="${deleteFunction}(event, ${pin.id})">Excluir</div>
             </div>`
         containerDiv.insertAdjacentHTML('beforeend', pinContent)
     })
