@@ -2,23 +2,15 @@ const apiBaseUrl = 'http://localhost:3001/graphql'
 const googleLoginPage = 'http://localhost:3001/auth/google'
 
 const pinsCreatedQuery = `{userPins {id image_url}}`
-createUserPins(pinsCreatedQuery, 'created-pins', 'userPins')
+createUserPins(pinsCreatedQuery, 'created-pins', 'userPins', 'deletePin')
 
 const pinsSavedQuery = `{userSavedPins {id image_url}}`
-createUserPins(pinsSavedQuery, 'saved-pins', 'userSavedPins')
+createUserPins(pinsSavedQuery, 'saved-pins', 'userSavedPins', 'deleteSavedPin')
 
-async function createUserPins(query, containerClass, dataName) {
+async function createUserPins(query, containerClass, dataName, deleteFunction) {
     const userPins = await queryFetch(query)
     if(!userPins) return
-    addUserPins(userPins.data[dataName], containerClass)
-}
-
-function addUserPins(pins, containerClass) {
-    const containerDiv = document.getElementsByClassName(containerClass)[0]
-    pins.forEach(pin => {
-        const pinContent = `<h3>${pin.id}</h3>`
-        containerDiv.insertAdjacentHTML('beforeend', pinContent)
-    })
+    addUserPins(userPins.data[dataName], containerClass, deleteFunction)
 }
 
 async function queryFetch(query) {
@@ -36,4 +28,32 @@ async function queryFetch(query) {
     const data = await response.json()
     if(data.errors) return window.location.href = googleLoginPage
     return data
+}
+
+function addUserPins(pins, containerClass, deleteFunction) {
+    const containerDiv = document.getElementsByClassName(containerClass)[0]
+    pins.forEach(pin => {
+        const pinContent = `
+            <div class="pin">
+                <img src=${pin.image_url} onClick="pinPage(${pin.id})">
+                <div class="pin-delete-btn" onClick="${deleteFunction}(event, ${pin.id})"></div>
+            </div>`
+        containerDiv.insertAdjacentHTML('beforeend', pinContent)
+    })
+}
+
+function pinPage(pinId) {
+    window.location.href = `pin.html?id=${pinId}`
+}
+
+async function deletePin(e, pinId) {
+    const deletePinQuery = `mutation {deletePin(id: "${pinId}"){title}}`
+    const deletedPin = await queryFetch(deletePinQuery)
+    e.target.parentElement.remove()
+}
+
+async function deleteSavedPin(e, pinId) {
+    const deleteSavedPinQuery = `mutation {deleteSavedPin(id: "${pinId}"){title}}`
+    const deletedSavedPin = await queryFetch(deleteSavedPinQuery)
+    e.target.parentElement.remove()
 }

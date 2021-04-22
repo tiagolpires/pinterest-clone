@@ -7,11 +7,11 @@ createPin()
 async function createPin() {
   const query = `{ pin(id: ${pinId}){image_url, title, id, author{name, profile_picture}}}`
   const url = `${apiBaseUrl}/${pinId}`
-  const pin = await fetchApi(query, url, 'pin')
-  addPin(pin)
+  const pin = await fetchApi(query, url)
+  addPin(pin.data.pin)
 }
 
-async function fetchApi(query, url, dataName) {
+async function fetchApi(query, url) {
   const response = await fetch(url, {
     method: 'POST',
     credentials: "include",
@@ -26,8 +26,7 @@ async function fetchApi(query, url, dataName) {
   })
     
   const data = await response.json()
-  if(data.errors) return window.location.href = googleLoginPage
-  return data.data[dataName]
+  return data
 }
 
 function addPin(pin) {
@@ -53,7 +52,8 @@ function addPin(pin) {
 
 async function savePin(pinId) {
   const query = `mutation {savePin(id: "${pinId}"){user_id pin_id}}`
-  const res = await fetchApi(query, apiBaseUrl, 'savePin')
+  const res = await fetchApi(query, apiBaseUrl)
+  if(res.errors) return window.location.href = googleLoginPage
   changeSaveBtn()
 }
 
