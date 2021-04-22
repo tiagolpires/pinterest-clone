@@ -12,19 +12,23 @@
 
 .pins-container {
     column-count: 7;
-    width: min-content;
-    margin: auto;
-    padding-top: 90px;
+    padding: 30px;
+    margin-top: 60px;
 }
 
 .pin {
-    display: inline-block;
-    cursor: pointer;
+    cursor: zoom-in;
     margin-bottom: 30px;
 }
 
+.pin:hover img{
+    filter: brightness(70%);
+    transition: all 1s ease 0s;
+    cursor: zoom-in;
+}
+
 .pin img {
-    width: 236px;
+    width: 100%;
     border-radius: 16px;
 }
 
