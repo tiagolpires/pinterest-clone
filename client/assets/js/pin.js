@@ -40,7 +40,7 @@ function addPin(pin) {
               <img src=${pin.author.profile_picture}>
               <span>Pin de <b>${pin.author.name}</b></span>
           </div>
-          <a class="pin-save-btn" onClick = savePin(${pin.id})>Salvar</a>
+          <a class="pin-save-btn" onClick="savePin(event, ${pin.id})">Salvar</a>
       </div>
       <div class="pin-title">
           <h1>${pin.title}</h1>
@@ -50,15 +50,14 @@ function addPin(pin) {
   pinContainer.innerHTML = pinContent
 }
 
-async function savePin(pinId) {
+async function savePin(e, pinId) {
   const query = `mutation {savePin(id: "${pinId}"){user_id pin_id}}`
   const res = await fetchApi(query, apiBaseUrl)
   if(res.errors) return window.location.href = googleLoginPage
-  changeSaveBtn()
+  changeSaveBtn(e.target)
 }
 
-function changeSaveBtn() {
-  const saveBtn = document.querySelector('.pin-save-btn')
+function changeSaveBtn(saveBtn) {
   saveBtn.classList.add('saved')
   saveBtn.innerText = 'Salvo'
 }

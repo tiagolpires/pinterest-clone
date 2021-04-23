@@ -19,6 +19,7 @@
 .pin {
     cursor: zoom-in;
     margin-bottom: 30px;
+    position: relative;
 }
 
 .pin:hover img{
@@ -27,9 +28,36 @@
     cursor: zoom-in;
 }
 
+.pin:hover .pin-save-btn {
+    display: flex;
+}
+
 .pin img {
     width: 100%;
     border-radius: 16px;
+}
+
+.pin-save-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #e60023;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 12px;
+}
+
+.pin-save-btn.pin-saved {
+    background-color: #000000;
+    display: flex;
+    cursor: auto;
 }
 
 @media(max-width: 1763px) {
