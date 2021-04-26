@@ -1,3 +1,5 @@
+changeHeaderPicture()
+
 async function changeHeaderPicture() {
     const userPicture = await getUserPicture()
     if (userPicture.errors) return
