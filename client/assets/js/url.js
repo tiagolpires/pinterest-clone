@@ -1,2 +1,2 @@
-const apiUrl = 'https://pinterest-clone-tiagolpires.herokuapp.com/graphql'
-const googleLoginPage = 'https://pinterest-clone-tiagolpires.herokuapp.com/auth/google'
+const apiUrl = 'http://localhost:3001/graphql'
+const googleLoginPage = 'http://localhost:3001/auth/google'

@@ -13,7 +13,7 @@
 .pins-container {
     column-count: 7;
     padding: 30px;
-    margin-top: 60px;
+    margin-top: 90px;
 }
 
 .pin {
@@ -86,6 +86,7 @@
 
 @media(max-width: 755px) {
     .pins-container {
+        margin-top: 20px;
         column-count: 2;
         padding: 90px 10px 0 10px;
     }

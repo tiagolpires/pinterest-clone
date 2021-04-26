@@ -43,3 +43,19 @@
     height: 42px;
     border-radius: 50px;
 }
+
+@media (max-width: 400px) {
+    .header-left-content {
+        font-size: 1.2rem;
+    }
+
+    .btn-add-pin {
+        padding: 15px 10px;
+        margin: 0 15px;
+    }
+
+    .header-user-container img {
+        width: 30px;
+        height: 30px;
+    }
+}

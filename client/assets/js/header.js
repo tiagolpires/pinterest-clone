@@ -1,17 +1,3 @@
-const mainHeader = document.querySelector('.main-header')
-const mainHeaderOffsetTop = mainHeader.offsetTop
-
-window.onscroll = () => addShadowOnHeader()
-changeHeaderPicture()
-
-function addShadowOnHeader() {
-    if (window.pageYOffset > mainHeaderOffsetTop) {
-        mainHeader.classList.add('bottom-shadow')
-        return
-    }
-    mainHeader.classList.remove('bottom-shadow')
-}
-
 async function changeHeaderPicture() {
     const userPicture = await getUserPicture()
     if (userPicture.errors) return
