@@ -1,6 +1,5 @@
 const mainHeader = document.querySelector('.main-header')
 const mainHeaderOffsetTop = mainHeader.offsetTop
-const apiUrl = 'http://localhost:3001/graphql'
 
 window.onscroll = () => addShadowOnHeader()
 changeHeaderPicture()

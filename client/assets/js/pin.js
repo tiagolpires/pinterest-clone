@@ -1,12 +1,10 @@
 const pinId = new URLSearchParams(location.search).get('id')
-const apiBaseUrl = 'http://localhost:3001/graphql'
-const googleLoginPage = 'http://localhost:3001/auth/google'
 
 createPin()
 
 async function createPin() {
   const query = `{ pin(id: ${pinId}){image_url, title, id, author{name, profile_picture}}}`
-  const url = `${apiBaseUrl}/${pinId}`
+  const url = `${apiUrl}/${pinId}`
   const pin = await fetchApi(query, url)
   addPin(pin.data.pin)
 }
@@ -52,7 +50,7 @@ function addPin(pin) {
 
 async function savePin(e, pinId) {
   const query = `mutation {savePin(id: "${pinId}"){user_id pin_id}}`
-  const res = await fetchApi(query, apiBaseUrl)
+  const res = await fetchApi(query, apiUrl)
   if(res.errors) return window.location.href = googleLoginPage
   changeSaveBtn(e.target)
 }

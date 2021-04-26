@@ -1,6 +1,3 @@
-const apiBaseUrl = 'http://localhost:3001/graphql'
-const googleLoginPage = 'http://localhost:3001/auth/google'
-const homePage = 'http://localhost:5500/client/index.html'
 const form = document.querySelector('.create-form')
 
 form.addEventListener('submit', handleFormSubmit)
@@ -11,7 +8,7 @@ async function handleFormSubmit(e) {
     const pinValues = getPinValues()
     const newPin = await createPin(pinValues)
     if(newPin.errors) return window.location.href = googleLoginPage
-    window.location.href = homePage
+    window.location.href = 'index.html'
 }
 
 function getPinValues() {
@@ -25,7 +22,7 @@ function getPinValues() {
 async function createPin(pinValues) {
     const query = getPinQuery(pinValues)
 
-    const response = await fetch(apiBaseUrl, {
+    const response = await fetch(apiUrl, {
         method: 'POST',
         credentials: "include",
         headers: {
@@ -69,7 +66,7 @@ async function createUserDiv() {
 }
 
 async function getLoggedUser() {
-    const response = await fetch(apiBaseUrl, {
+    const response = await fetch(apiUrl, {
         method: 'POST',
         credentials: "include",
         headers: {

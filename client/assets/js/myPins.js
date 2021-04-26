@@ -1,6 +1,3 @@
-const apiBaseUrl = 'http://localhost:3001/graphql'
-const googleLoginPage = 'http://localhost:3001/auth/google'
-
 const pinsCreatedQuery = `{userPins {id image_url}}`
 createUserPins(pinsCreatedQuery, 'created-pins', 'userPins', 'deletePin')
 
@@ -14,7 +11,7 @@ async function createUserPins(query, containerClass, dataName, deleteFunction) {
 }
 
 async function queryFetch(query) {
-    const response = await fetch(apiBaseUrl, {
+    const response = await fetch(apiUrl, {
         method: 'POST',
         credentials: "include",
         headers: {
