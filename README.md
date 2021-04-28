@@ -1,6 +1,9 @@
 # Pinterest Clone
 - [See this project working](https://pinterest-clone-tiagopires.herokuapp.com/)
 
+![](client/assets/images/git-image.png)
+
+
 ## About this Project
 GraphQL and node.js clone of the website Pinterest.
 
