@@ -5,7 +5,7 @@ const passport = require('passport')
 const authRoutes = require('./src/authRoutes')
 const { graphqlHTTP } = require('express-graphql')
 const schema = require('./src/Schemas')
-require('./auth')
+require('./src/auth')
 require('dotenv').config()
 
 const app = express()
