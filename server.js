@@ -19,6 +19,8 @@ app.use(
     })
 )
 
+app.use(express.static('./client'))
+
 app.use(session({
     store: new (require('connect-pg-simple')(session))(),
     secret: process.env.SESSION_SECRET,
@@ -28,8 +30,7 @@ app.use(session({
 }))
 
 app.use((req, res, next) => {
-    console.log('Cookies: ', req.cookies)
-    console.log(req.headers)
+    console.log('Cookies: ', req.headers.cookie)
     next()
 })
 
@@ -42,6 +43,5 @@ app.use('/graphql', graphqlHTTP(req => ({
     context: { user: req.user },
     graphiql: true
 })))
-
 
 app.listen(PORT, () => console.log(`Server Running at ${PORT}`))
