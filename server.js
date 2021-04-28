@@ -19,10 +19,19 @@ app.use(
     })
 )
 
-app.use(cookieSession({
-    name: 'session',
-    keys: ['key1', 'key2']
+app.use(session({
+    store: new (require('connect-pg-simple')(session))(),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000} // 30 days
 }))
+
+app.use((req, res, next) => {
+    console.log('Cookies: ', req.cookies)
+    console.log(req.headers)
+    next()
+})
 
 app.use(passport.initialize())
 app.use(passport.session())
