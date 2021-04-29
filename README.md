@@ -5,7 +5,7 @@
 
 
 ## About this Project
-GraphQL and node.js clone of the website Pinterest.
+GraphQL and Node.js clone of the website Pinterest.
 
 ## Functionalities
 - See all pins created
@@ -20,9 +20,11 @@ GraphQL and node.js clone of the website Pinterest.
 
 ## Built With
  - [GraphQL](https://graphql.org/) - Query Language
- - [Passport](http://www.passportjs.org/) - User Authentication
+ - [Passport](http://www.passportjs.org/) - Google Authentication
  - [Express-Session]( https://www.npmjs.com/package/express-session) - Manage Sessions
+ - [Connect-Pg-Simple](https://www.npmjs.com/package/connect-pg-simple) - Store Sessions
  - [PostgreSQL](https://www.postgresql.org/) - Database
+ - [Node-Postgres](https://node-postgres.com/) - Manage PostgreSQL Data
  - [Node.Js](https://nodejs.org/en/) - Server Side
  - [Express](https://expressjs.com/) - Authentication Routes
 
