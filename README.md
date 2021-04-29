@@ -26,7 +26,7 @@ GraphQL and Node.js clone of the website Pinterest.
  - [PostgreSQL](https://www.postgresql.org/) - Database
  - [Node-Postgres](https://node-postgres.com/) - Manage PostgreSQL Data
  - [Node.Js](https://nodejs.org/en/) - Server Side
- - [Express](https://expressjs.com/) - Authentication Routes
+ - [Express](https://expressjs.com/) - Server Configuration and Authentication Routes
 
 
 
