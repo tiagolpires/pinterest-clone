@@ -1,6 +1,7 @@
 const form = document.querySelector('.create-form')
 
 form.addEventListener('submit', handleFormSubmit)
+
 createUserDiv()
 
 async function handleFormSubmit(e) {
@@ -15,28 +16,13 @@ function getPinValues() {
     const title = document.querySelector('.title-input').value
     const description = document.querySelector('.desc-input').value
     const imageUrl = document.querySelector('.url-input').value
-
     return {imageUrl: imageUrl, title: title, description: description}
 }
 
 async function createPin(pinValues) {
     const query = getPinQuery(pinValues)
-
-    const response = await fetch(apiUrl, {
-        method: 'POST',
-        credentials: "include",
-        headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        "Access-Control-Allow-Credentials": true
-        },
-        body: JSON.stringify({ 
-            query: query 
-        })
-    })
-    
-    const responseJson = await response.json()
-    return responseJson
+    const createPin = queryFetch(query)
+    return createPin
 }
 
 function getPinQuery({ imageUrl, title, description }) {
@@ -54,18 +40,15 @@ function getPinQuery({ imageUrl, title, description }) {
     return query
 }
 
-async function createUserDiv() {
-    const loggedUser = await getLoggedUser()
+async function getLoggedUser() {
+    const query = '{loggedUser{name profile_picture}}'
+    const response = await queryFetch(query)
 
-    const divContainer = document.querySelector('.create-pin-user')
-    const userInfo = `
-        <img src= ${loggedUser.data.loggedUser.profile_picture}>
-        <span>${loggedUser.data.loggedUser.name}</span>
-    `
-    divContainer.innerHTML = userInfo
+    if(response.errors) return window.location.href = googleLoginPage
+    return response
 }
 
-async function getLoggedUser() {
+async function queryFetch(query) {
     const response = await fetch(apiUrl, {
         method: 'POST',
         credentials: "include",
@@ -74,12 +57,22 @@ async function getLoggedUser() {
         'Accept': 'application/json',
         "Access-Control-Allow-Credentials": true
         },
-        body: JSON.stringify({ 
-            query: '{loggedUser{name profile_picture}}' 
-        })
+        body: JSON.stringify({ query })
     })
+
+    const data = await response.json()
+    return data
+}
+
+async function createUserDiv() {
+    const loggedUser = await getLoggedUser()
+    const loggedUserData = loggedUser.data.loggedUser
+    const { profile_picture: userProfileImg, name: userName } = loggedUserData
+    const divContainer = document.querySelector('.create-pin-user')
     
-    const responseJson = await response.json()
-    if(responseJson.errors) return window.location.href = googleLoginPage
-    return responseJson
+    const userInfo = `
+        <img src= ${userProfileImg}>
+        <span>${userName}</span>
+    `
+    divContainer.innerHTML = userInfo
 }
