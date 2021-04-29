@@ -13,7 +13,7 @@ async function getAllPins() {
 
 function addPins(pins) {
     const pinsContainer = document.querySelector('.pins-container')
-    pins.map((pin) => {
+    pins.forEach((pin) => {
         const pinContent = `
             <div class="pin">
                 <img src=${pin.image_url} onClick="pinPage(${pin.id})">
