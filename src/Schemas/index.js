@@ -7,10 +7,6 @@ const resolver = require('./resolver')
 const RootQueryType = new GraphQLObjectType ({
     name: 'Query',
     fields: {
-        users: {
-            type: new GraphQLList(UserType),
-            resolve: resolver.getAllUsers
-        },
         loggedUser: {
             type: UserType,
             resolve: resolver.getLoggedUser
