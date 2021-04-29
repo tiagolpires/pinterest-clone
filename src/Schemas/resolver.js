@@ -7,7 +7,7 @@ module.exports = {
     },
     getAllPins: async() => {
         const pins = await pool.query(
-            "SELECT * FROM pin"
+            "SELECT * FROM pin ORDER BY created_at"
         )
         return pins.rows
     },
