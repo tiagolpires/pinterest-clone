@@ -8,7 +8,7 @@
 GraphQL and Node.js clone of the website Pinterest.
 
 ## Functionalities
-- See all pins created
+- See all created pins
 - Create your own pins providing a title, description and image url
 - See created Pins
 - Delete your Pins
